@@ -17,7 +17,8 @@ npm run dev
 https://next-synapsis-rafi.vercel.app/
 - Integrate Vercel with your repository host for continuous deployments at https://vercel.com/new                                                                                                  |
 
-## Instal
--next js
+## Stack
+-Next js
 -Typescript
+-Tailwind
 
