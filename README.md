@@ -5,6 +5,11 @@
 To get started, run:
 
 ```bash
+npm i
+```
+than
+
+```bash
 npm run dev
 ```
 ## Link:
@@ -13,7 +18,6 @@ https://next-synapsis-rafi.vercel.app/
 - Integrate Vercel with your repository host for continuous deployments at https://vercel.com/new                                                                                                  |
 
 ## Instal
-
-npm i
-npm run dev
+-next js
+-Typescript
 
