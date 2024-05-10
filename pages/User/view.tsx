@@ -1,84 +1,91 @@
-import React, { useState } from 'react';
-import ReactPaginate from 'react-paginate';
-import Link from 'next/link';
-import Button from '@/templates/components/Button';
-import {FaUser} from 'react-icons/fa'
-import { useRouter } from 'next/router';
-import Layout from '@/templates/components/Layout';
-import SearchBar from '@/templates/components/Searchbar';
+import React, { useState } from "react";
+import ReactPaginate from "react-paginate";
+import Link from "next/link";
+import Button from "@/templates/components/Button";
+import { FaUser } from "react-icons/fa";
+import { useRouter } from "next/router";
+import Layout from "@/templates/components/Layout";
+import SearchBar from "@/templates/components/Searchbar";
 
 interface UserProps {
-    postData: any;
+  postData: any;
 }
 
 const UserView: React.FC<UserProps> = ({ postData }) => {
-    const [searchResults, setSearchResults] = useState(postData);
-    const [currentPage, setCurrentPage] = useState(0);
-    const route = useRouter()
+  const [searchResults, setSearchResults] = useState(postData);
+  const [currentPage, setCurrentPage] = useState(0);
+  const route = useRouter();
 
-    const itemsPerPage = 6;
-    const offset = currentPage * itemsPerPage;
-    const pageCount = Math.ceil((postData?.length ?? 0)/ itemsPerPage);
+  const postDataArray = postData ?? [];
 
-    const handlePageChange = ({ selected }: { selected: number }) => {
-        setCurrentPage(selected);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    };
+  const itemsPerPage = 6;
+  const offset = currentPage * itemsPerPage;
+  const pageCount = Math.ceil((postDataArray?.length ?? 0) / itemsPerPage);
 
-    const handleNavigate=()=>{
-        route.push('/AddUser')
-    }
+  const handlePageChange = ({ selected }: { selected: number }) => {
+    setCurrentPage(selected);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-    return (
-        <Layout heading='User List'>
-            <SearchBar data={postData} setSearchResults={setSearchResults} />
-            <Button text='Add User' onClick={handleNavigate}/>
-            <div className='flex flex-col gap-4 '>
+  const handleNavigate = () => {
+    route.push("/AddUser");
+  };
 
-                {(searchResults?.length ?? 0) > 0 ? (
-                    searchResults.slice(offset, offset + itemsPerPage).map((item: any, index: any) => (
-                        <div key={index}>                  
-                            <Link key={index} href={`./User/${item.id}`}>
-                            <div className=" flex items-center">
-                                    <div className="rounded-l-md p-3 border-[1px]  text-black bg-green-500">
-                                        <FaUser />
-                                    </div>
-                                    <p className="bg-green-300 p-2 rounded-r-md text-white w-[400px]">{item.name}</p>
-                                </div>
-                            </Link>
-                        </div>
-                    ))
-                ) : (
-                    postData.slice(offset, offset + itemsPerPage).map((item: any, index: any) => (
-                        <div key={index}>                  
-                            <Link key={index} href={`./User/${item.id}`}>
-                            <div className=" flex items-center">
-                                    <div className="rounded-l-md p-3 border-[1px]  text-black bg-green-500">
-                                        <FaUser />
-                                    </div>
-                                    <p className="bg-green-300 p-2 rounded-r-md text-white lg:w-[400px] md:w-[300px] w-[200px] lg:text-base md:text-[16px] text-[14px]">{item.name}</p>
-                                </div>
-                            </Link>
-                        </div>
-                    ))
-                )}
-            </div>
+  return (
+    <Layout heading="User List">
+      <SearchBar data={postData} setSearchResults={setSearchResults} />
+      <Button text="Add User" onClick={handleNavigate} />
+      <div className="flex flex-col gap-4 ">
+        {(searchResults?.length ?? 0) > 0
+          ? searchResults
+              .slice(offset, offset + itemsPerPage)
+              .map((item: any, index: any) => (
+                <div key={index}>
+                  <Link key={index} href={`./User/${item.id}`}>
+                    <div className=" flex items-center">
+                      <div className="rounded-l-md p-3 border-[1px]  text-black bg-green-500">
+                        <FaUser />
+                      </div>
+                      <p className="bg-green-300 p-2 rounded-r-md text-white w-[400px]">
+                        {item.name}
+                      </p>
+                    </div>
+                  </Link>
+                </div>
+              ))
+          : postDataArray
+              .slice(offset, offset + itemsPerPage)
+              .map((item: any, index: any) => (
+                <div key={index}>
+                  <Link key={index} href={`./User/${item.id}`}>
+                    <div className=" flex items-center">
+                      <div className="rounded-l-md p-3 border-[1px]  text-black bg-green-500">
+                        <FaUser />
+                      </div>
+                      <p className="bg-green-300 p-2 rounded-r-md text-white lg:w-[400px] md:w-[300px] w-[200px] lg:text-base md:text-[16px] text-[14px]">
+                        {item.name}
+                      </p>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+      </div>
 
-             <ReactPaginate
-                pageCount={pageCount}
-                pageRangeDisplayed={3}
-                marginPagesDisplayed={1}
-                onPageChange={handlePageChange}
-                containerClassName=" flex justify-center"
-                activeClassName="bg-blue-500 text-white"
-                previousLabel="Prev"
-                nextLabel="Next"
-                previousClassName=""
-                nextClassName=""
-                disabledClassName="opacity-50 cursor-not-allowed"
-                pageClassName="inline-block m-2 p-2 rounded-md hover:shadow-md hover:shadow-green-500 active:shadow-black  cursor-pointer"
-            />
-        </Layout>
-    );
+      <ReactPaginate
+        pageCount={pageCount}
+        pageRangeDisplayed={3}
+        marginPagesDisplayed={1}
+        onPageChange={handlePageChange}
+        containerClassName=" flex justify-center"
+        activeClassName="bg-blue-500 text-white"
+        previousLabel="Prev"
+        nextLabel="Next"
+        previousClassName=""
+        nextClassName=""
+        disabledClassName="opacity-50 cursor-not-allowed"
+        pageClassName="inline-block m-2 p-2 rounded-md hover:shadow-md hover:shadow-green-500 active:shadow-black  cursor-pointer"
+      />
+    </Layout>
+  );
 };
 export default UserView;
