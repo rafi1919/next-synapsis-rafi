@@ -32,7 +32,7 @@ const UserView: React.FC<UserProps> = ({ postData }) => {
     return (
         <Layout heading='User List'>
             <SearchBar data={postData} setSearchResults={setSearchResults} />
-            <Button text='Create User' onClick={handleNavigate}/>
+            <Button text='Add User' onClick={handleNavigate}/>
             <div className='flex flex-col gap-4 '>
 
                 {searchResults.length > 0 ? (
@@ -56,7 +56,7 @@ const UserView: React.FC<UserProps> = ({ postData }) => {
                                     <div className="rounded-l-md p-3 border-[1px]  text-black bg-green-500">
                                         <FaUser />
                                     </div>
-                                    <p className="bg-green-300 p-2 rounded-r-md text-white w-[400px]">{item.name}</p>
+                                    <p className="bg-green-300 p-2 rounded-r-md text-white lg:w-[400px] md:w-[300px] w-[200px] lg:text-base md:text-[16px] text-[14px]">{item.name}</p>
                                 </div>
                             </Link>
                         </div>

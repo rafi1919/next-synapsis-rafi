@@ -75,10 +75,18 @@ const UserDetailView:React.FC<detailProps>=({userId,  email, name, gender, statu
                                     <input className="w-full p-2 rounded-md bg-slate-100 flex items-center justify-center m-2" placeholder="Email" value={updatedEmail} onChange={(e) => setUpdatedEmail(e.target.value)} />
                                 </div>
                                 <div>
-                                    <input className="w-full p-2 rounded-md bg-slate-100 flex items-center justify-center m-2" placeholder="Gender" value={updatedGender} onChange={(e) => setUpdatedGender(e.target.value)} />
+                                    <select className="w-full p-2 rounded-md bg-slate-100 flex items-center justify-center m-2" value={updatedGender} onChange={(e) => setUpdatedGender(e.target.value)}>
+                                        <option value="">Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
                                 </div>
                                 <div>
-                                    <input className="w-full p-2 rounded-md bg-slate-100 flex items-center justify-center m-2" placeholder="Status" value={updatedStatus} onChange={(e) => setUpdatedStatus(e.target.value)} />
+                                    <select className="w-full p-2 rounded-md bg-slate-100 flex items-center justify-center m-2" value={updatedStatus} onChange={(e) => setUpdatedStatus(e.target.value)}>
+                                        <option value="">Select Status</option>
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
+                                    </select>
                                 </div>
                                 <Button text='Update User' type="submit" />
                                 <Button text='Cancel' onClick={handleUpdate} />

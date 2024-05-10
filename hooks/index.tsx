@@ -97,6 +97,49 @@ export const useGetUserData = () => {
   };
 };
 
+export const useGetUserDetail = () => {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState<any>(null); // Initialize data as null
+
+  const getUserDetail = async (userId: string) => {
+    setLoading(true);
+
+    const myHeaders = new Headers();
+    myHeaders.append(
+      "Authorization",
+      "Bearer 131008b563bcd02c53757afc786b47ff57bcc382477caeb37f0bfae660ef5a80"
+    );
+
+    try {
+      const response = await fetch(`https://gorest.co.in/public/v2/users/${userId}`, {
+        method: "GET",
+        redirect: "follow",
+        headers: myHeaders,
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch user details');
+      }
+
+      const result = await response.json();
+      setData(result); // Update data with the whole response object
+      console.log(result);
+    } catch (error) {
+      console.error("There was a problem with the fetch operation:", error);
+      // You can add more error handling here, like setting an error state
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return {
+    data,
+    getUserDetail,
+    loading
+  };
+};
+
+
 
   export const useDeleteUserData = () => {
     const [loading, setLoading] = useState(false);

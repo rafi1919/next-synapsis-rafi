@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PostDetailView from './view';
 import { useRouter } from 'next/router';
-import { useGetCommentsData, useGetBlogData } from '@/hooks';
+import { useGetCommentsData, useGetBlogData,} from '@/hooks';
 
 export default function Index() {
     const router = useRouter();
@@ -11,21 +11,21 @@ export default function Index() {
     const { data: blogData, loading: blogLoading } = useGetBlogData();
 
     useEffect(() => {
-        if (blogData) {
+        if (blogData ) {
             const post = blogData.find((post: any) => post.id === parseInt(postId));
             setPostData(post || {});
         }
     }, [blogData, postId]);
 
-    if (commentsLoading || blogLoading) {
+    if (commentsLoading || blogLoading ) {
         return <div>Loading...</div>;
     }
 
     return (
         <PostDetailView
-            // postId={postId}
             commentsData={commentsData}
-            title={postData.title}
+            userName='anonymous' 
+            title={postData.title} 
             body={postData.body}
         />
     );

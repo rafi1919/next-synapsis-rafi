@@ -4,16 +4,20 @@ import {FaUser} from 'react-icons/fa'
 interface detailProps{
     postId?:any
     commentsData:any
+    userName:any
     body: string
     title: string
 }
 
-const PostDetailView:React.FC<detailProps>=({postId, commentsData, title, body})=>{
+const PostDetailView:React.FC<detailProps>=({postId, commentsData, title, body, userName})=>{
     return(
         <Layout  heading={title}>
                 <div className="w-full">
                     {/* <p className="text-xl font-bold py-2">{title}</p> */}
-                    <p className="text-left">by: <span className="text-green-600 font-medium">pp</span></p>
+                    <p className="text-left">by: 
+
+                    <span className="text-green-600 font-medium">{userName}</span>
+                    </p>
                     <p className="text-[18px] py-5">{body}</p>
                 
                 </div>

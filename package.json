@@ -25,7 +25,8 @@
     "react-dom": "18.3.1",
     "react-hook-form": "^7.51.4",
     "react-paginate": "^8.2.0",
-    "typescript": "5.4.5"
+    "typescript": "5.4.5",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@tanstack/react-query": "^4.36.1",
