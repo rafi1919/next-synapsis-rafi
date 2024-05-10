@@ -9,7 +9,7 @@ interface detailProps{
     title: string
 }
 
-const PostDetailView:React.FC<detailProps>=({postId, commentsData, title, body, userName})=>{
+const PostDetailView:React.FC<detailProps>=({ commentsData, title, body, userName})=>{
     return(
         <Layout  heading={title}>
                 <div className="w-full">
@@ -25,7 +25,7 @@ const PostDetailView:React.FC<detailProps>=({postId, commentsData, title, body, 
                 <p className="text-md font-bold ">Comments:</p>
                 <div className="py-3">
                     <ul className="flex flex-col gap-4">
-                        {commentsData.length > 0 ? <>
+                        {(commentsData?.length ?? 0)> 0 ? <>
                             
                             {commentsData.map((item:any)=>(
                                 <div className="">

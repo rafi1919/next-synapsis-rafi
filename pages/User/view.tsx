@@ -18,7 +18,7 @@ const UserView: React.FC<UserProps> = ({ postData }) => {
 
     const itemsPerPage = 6;
     const offset = currentPage * itemsPerPage;
-    const pageCount = Math.ceil(postData.length / itemsPerPage);
+    const pageCount = Math.ceil((postData?.length ?? 0)/ itemsPerPage);
 
     const handlePageChange = ({ selected }: { selected: number }) => {
         setCurrentPage(selected);
@@ -35,7 +35,7 @@ const UserView: React.FC<UserProps> = ({ postData }) => {
             <Button text='Add User' onClick={handleNavigate}/>
             <div className='flex flex-col gap-4 '>
 
-                {searchResults.length > 0 ? (
+                {(searchResults?.length ?? 0) > 0 ? (
                     searchResults.slice(offset, offset + itemsPerPage).map((item: any, index: any) => (
                         <div key={index}>                  
                             <Link key={index} href={`./User/${item.id}`}>

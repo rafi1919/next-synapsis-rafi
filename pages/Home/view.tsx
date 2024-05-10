@@ -13,7 +13,7 @@ const HomeView:React.FC<HomeProps>=({postData})=>{
 
     const itemsPerPage = 6;
     const offset = currentPage * itemsPerPage;
-    const pageCount = Math.ceil(postData.length / itemsPerPage);
+    const pageCount = Math.ceil((postData?.length ?? 0) / itemsPerPage);
   
     const handlePageChange = ({ selected }: { selected: number }) => {
       setCurrentPage(selected);
