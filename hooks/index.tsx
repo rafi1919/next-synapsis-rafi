@@ -10,7 +10,7 @@ export const useGetBlogData = () => {
       try {
         const response = await fetch("https://gorest.co.in/public/v2/posts");
         const responseData = await response.json();
-        console.log(responseData);
+        // console.log(responseData);
         setData(responseData);
       } catch (error) {
         console.error(error);
@@ -35,7 +35,6 @@ export const useGetCommentsData = ({ postId }: { postId: string }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch the news article based on its id to get the pathSlug
         const response = await fetch(
           `https://gorest.co.in/public/v2/posts/${postId}/comments`
         );
@@ -79,7 +78,7 @@ export const useGetUserData = () => {
       });
       const result = await response.json();
       setData(result);
-      console.log(result);
+      // console.log(result);
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error);
     } finally {
