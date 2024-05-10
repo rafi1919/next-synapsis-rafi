@@ -13,7 +13,7 @@ const Index = () => {
   }, [data, loading]);
 
   if (loading) {
-    return <div>Loading...</div>; // Render a loading indicator
+    return <div>Loading...</div>;
   }
 
   return <UserView postData={stateData} />;

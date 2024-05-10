@@ -13,7 +13,7 @@ export default function Index() {
     if (userId) {
       getUserDetail(userId);
     }
-  }, [userId, getUserDetail]);
+  }, [userId]);
 
   useEffect(() => {
     if (data && Object.keys(data).length > 0) {
